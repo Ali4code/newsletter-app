@@ -1,8 +1,12 @@
 import "./App.css";
+import { NewsLetterContainer } from "./components/NewsLetterContainer";
 
 function App() {
-  return <></>;
-  
+  return (
+    <>
+      <NewsLetterContainer />
+    </>
+  );
 }
 
 export default App;
