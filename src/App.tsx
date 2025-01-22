@@ -1,11 +1,13 @@
 import "./App.css";
-import { NewsLetterContainer } from "./components/NewsLetterContainer";
+import { AuthenticationHeader } from "./components/AuthenticationHeader/AuthenticationHeader";
+import { NewsLetter } from "./components/NewsLetter/NewsLetter";
 
 function App() {
   return (
-    <>
-      <NewsLetterContainer />
-    </>
+    <div>
+      <AuthenticationHeader />
+      <NewsLetter />
+    </div>
   );
 }
 
