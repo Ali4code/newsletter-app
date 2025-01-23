@@ -5,6 +5,7 @@ export const API_KEYS_LOCAL_STORAGE_KEY = "api_keys";
 export type TApiKeys = {
   newsApiOrg: string;
   guardianNews: string;
+  nyTimes: string;
 };
 
 export const useGetApiKeys = (): {
@@ -19,6 +20,7 @@ export const useGetApiKeys = (): {
   // const ApiKeysFromEnv = {
   //   newsApiOrg: process?.env?.NEWS_API_ORG_API_KEY,
   //   guardianNews: process?.env?.GUARDIAN_API_KEY,
+  //   nyTimes: process?.env?.NEW_YORK_TIMES_API_KEY,
   // };
 
   return {

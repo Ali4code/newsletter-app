@@ -4,7 +4,7 @@ import {
   useSelector,
 } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { NewsOrgApi } from "../services/NewsLetterApi";
+import { NewsOrgApi } from "../services/NewsApi/NewsApi.api";
 
 const middleware = (getDefaultMiddleware: any) =>
   getDefaultMiddleware().concat(NewsOrgApi.middleware);

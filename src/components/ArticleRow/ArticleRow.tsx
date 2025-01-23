@@ -1,4 +1,4 @@
-import { TArticle } from "../../services/NewsApi.types";
+import { TArticle } from "../../services/NewsApi/NewsApi.types";
 import Classes from "./ArticleRow.module.css";
 
 export const ArticleRow = ({ article }: { article: TArticle }) => {

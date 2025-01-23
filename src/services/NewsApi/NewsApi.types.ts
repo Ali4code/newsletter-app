@@ -1,4 +1,4 @@
-import { NEWS_API_ORG_CATEGORIES } from "./constants";
+import { NEWS_API_ORG_CATEGORIES } from "./NewsApi.constants";
 
 export type TSearchNewsApiOrgRequest = {
   apiKey: string;

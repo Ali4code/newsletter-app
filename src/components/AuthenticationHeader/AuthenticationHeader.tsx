@@ -13,6 +13,7 @@ export const AuthenticationHeader = ({
     storedApiKeys || {
       newsApiOrg: "",
       guardianNews: "",
+      nyTimes: "",
     }
   );
 
@@ -36,28 +37,34 @@ export const AuthenticationHeader = ({
         <div>
           <div className={Classes.keys_repeater}>
             <div className={Classes.keys}>
-              <label>Newapi.org</label>
+              <label htmlFor="newsApiOrg">Newapi.org</label>
               <input
                 onChange={onChange}
                 name="newsApiOrg"
                 id="newsApiOrg"
                 type="text"
-                value={apiKeys.newsApiOrg}
+                value={apiKeys.newsApiOrg ?? ""}
               ></input>
             </div>
             <div className={Classes.keys}>
-              <label>The Gaurdian</label>
+              <label htmlFor="guardianNews">The Guardian</label>
               <input
                 onChange={onChange}
                 name="guardianNews"
                 id="guardianNews"
                 type="text"
-                value={apiKeys.guardianNews}
+                value={apiKeys.guardianNews ?? ""}
               ></input>
             </div>
             <div className={Classes.keys}>
-              <label>3rd one</label>
-              <input type="text"></input>
+              <label htmlFor="nyTimes">New York Times</label>
+              <input
+                onChange={onChange}
+                name="nyTimes"
+                id="nyTimes"
+                type="text"
+                value={apiKeys.nyTimes ?? ""}
+              ></input>
             </div>
           </div>
         </div>
