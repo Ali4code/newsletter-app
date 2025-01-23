@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Classes from "./SearchColumn.module.css";
 
-export const SearchColumn = () => {
+export const SearchColumn = ({ apiKeys }: { apiKeys: TApiKeys }) => {
   const [searchFields, setSearchFields] = useState({});
   return (
     <div className={Classes.search_column}>

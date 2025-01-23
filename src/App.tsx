@@ -1,8 +1,8 @@
 import { Provider } from "react-redux";
 import { AuthenticationHeader } from "./components/AuthenticationHeader/AuthenticationHeader";
-import { NewsFeed } from "./components/NewsFeed/NewsFeed";
 import { store } from "./store/store";
 import { useGetApiKeys } from "./utils/useGetApiKeys";
+import { Tabs } from "./components/Tabs/Tabs";
 
 function App() {
   const { apiKeys, setApiKeys } = useGetApiKeys();
@@ -12,8 +12,7 @@ function App() {
         setStoredApiKeys={setApiKeys}
         storedApiKeys={apiKeys}
       />
-
-      <NewsFeed apiKeys={apiKeys} />
+      <Tabs apiKeys={apiKeys} />
     </Provider>
   );
 }

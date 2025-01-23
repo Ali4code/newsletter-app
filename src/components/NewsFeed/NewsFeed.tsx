@@ -18,11 +18,9 @@ export const NewsFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
     { skip: !apiKeys?.newsApiOrg }
   );
   return (
-    <div className={Classes.newsFeed_container}>
-      <h2>News Feed</h2>
-
+    <div className={Classes.news_feed_container}>
       {isLoading && (
-        <div className="flex_col">
+        <div className={Classes.skeletons_container}>
           {Array.from({ length: 5 }).map((_, index) => (
             <ArticleRowSkeleton key={index} />
           ))}
