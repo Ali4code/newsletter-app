@@ -4,7 +4,7 @@ import {
   TSearchNewsApiOrgRequest,
   TSourcesNewsApiOrgResponse,
   TTopHeadlinesNewsApiOrgRequest,
-} from "./NewsApi.types";
+} from "./NewYorkTimes.types";
 
 export const NewsOrgApi = createApi({
   reducerPath: "NewsOutletsApi",

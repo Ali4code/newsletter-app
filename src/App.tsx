@@ -8,7 +8,11 @@ function App() {
   const { apiKeys, setApiKeys } = useGetApiKeys();
   return (
     <Provider store={store}>
-      <AuthenticationHeader setStoredApiKeys={setApiKeys} storedApiKeys={apiKeys} />
+      <AuthenticationHeader
+        setStoredApiKeys={setApiKeys}
+        storedApiKeys={apiKeys}
+      />
+
       <NewsFeed apiKeys={apiKeys} />
     </Provider>
   );

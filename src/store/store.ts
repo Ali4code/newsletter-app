@@ -3,14 +3,24 @@ import {
   useDispatch,
   useSelector,
 } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import { NewsOrgApi } from "../services/NewsApi/NewsApi.api";
+import { configureStore, Middleware } from "@reduxjs/toolkit";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const middleware = (getDefaultMiddleware: any) =>
-  getDefaultMiddleware().concat(NewsOrgApi.middleware);
+export const BaseApi = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://",
+    fetchFn: async (input, init) => await window.fetch(input, init),
+  }),
+  endpoints: () => ({}),
+  reducerPath: "BaseApi",
+});
+
+
+const middleware = (getDefaultMiddleware: () => Middleware[]) =>
+  getDefaultMiddleware().concat(BaseApi.middleware);
 
 const reducer = {
-  [NewsOrgApi.reducerPath]: NewsOrgApi.reducer,
+  [BaseApi.reducerPath]: BaseApi.reducer,
 };
 
 const config = {
@@ -18,6 +28,7 @@ const config = {
   middleware,
 };
 
+// @ts-expect-error next-line
 export const store = configureStore(config);
 
 export type TAppDispatch = typeof store.dispatch;

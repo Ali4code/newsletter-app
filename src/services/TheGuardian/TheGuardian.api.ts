@@ -3,18 +3,17 @@ import {
   TSearchNewsApiOrgRequest,
   TSourcesNewsApiOrgResponse,
   TTopHeadlinesNewsApiOrgRequest,
-} from "./NewsApi.types";
+} from "./TheGuardian.types";
 import { BaseApi } from "../../store/store";
 
-export const NewsOrgApi = BaseApi.injectEndpoints({
+export const TheGuardianApi = BaseApi.injectEndpoints({
   endpoints: (builder) => ({
-    searchNewsApiOrg: builder.query<
+    searchGuardian: builder.query<
       TNewsApiOrgResponse,
       TSearchNewsApiOrgRequest
     >({
       query: ({ apiKey, searchParam, from, to }) => ({
-        url: `newsapi.org/v2/everything?q=${searchParam}&from=${from}&to=${to}`,
-        headers: { "X-Api-Key": apiKey },
+        url: `content.guardianapis.com/search?q=${searchParam}&from-date=${from}&to-date=${to}&api-key=${apiKey}`,
       }),
     }),
     getHeadlinesNewsApiOrg: builder.query<
@@ -23,23 +22,20 @@ export const NewsOrgApi = BaseApi.injectEndpoints({
     >({
       query: ({ apiKey, category, sources }) => ({
         url: category
-          ? `newsapi.org/v2/top-headlines?category=${category}`
-          : `newsapi.org/v2/top-headlines?sources=${sources}`,
-        headers: { "X-Api-Key": apiKey },
+          ? `"https://newsapi.org/v2/top-headlines?category=${category}`
+          : `"https://newsapi.org/v2/top-headlines?sources=${sources}`,
       }),
     }),
     getSourcesNewsApiOrg: builder.query<TSourcesNewsApiOrgResponse, string>({
       query: (apiKey) => ({
-        url: "newsapi.org/v2/top-headlines/sources",
-        headers: { "X-Api-Key": apiKey },
+        url: "https://newsapi.org/v2/top-headlines/sources",
       }),
     }),
   }),
 });
 
 export const {
-  useLazySearchNewsApiOrgQuery,
   useGetHeadlinesNewsApiOrgQuery,
-  useLazyGetHeadlinesNewsApiOrgQuery,
-  useLazyGetSourcesNewsApiOrgQuery,
-} = NewsOrgApi;
+  useGetSourcesNewsApiOrgQuery,
+  useSearchGuardianQuery,
+} = TheGuardianApi;
