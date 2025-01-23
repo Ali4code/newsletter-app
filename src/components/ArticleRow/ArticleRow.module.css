@@ -15,3 +15,22 @@
     font-weight: bold;
     font-size: 24px;
 }
+
+.article_row_skeleton {
+    width: 100%;
+    height: 300px;
+    animation: pulse 2s infinite;
+    background: linear-gradient(to right, #59627A1A, #444B5D40);
+    border-radius: 1.5rem;
+    flex-shrink: 0;
+    margin: 12px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
