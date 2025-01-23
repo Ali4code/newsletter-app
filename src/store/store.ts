@@ -1,7 +1,13 @@
-import { configureStore, Middleware } from "@reduxjs/toolkit";
+import {
+  type TypedUseSelectorHook,
+  useDispatch,
+  useSelector,
+} from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { NewsOutletsApi } from "../services/NewsLetterApi";
 
-const middleWare = (getDefaultMiddleWare: () => Middleware[]): Middleware[] => getDefaultMiddleWare().concat(NewsOutletsApi.middleware);
+const middleware = (getDefaultMiddleware: any) =>
+  getDefaultMiddleware().concat(NewsOutletsApi.middleware);
 
 const reducer = {
   [NewsOutletsApi.reducerPath]: NewsOutletsApi.reducer,
@@ -9,7 +15,15 @@ const reducer = {
 
 const config = {
   reducer,
-  middleWare,
+  middleware,
 };
 
 export const store = configureStore(config);
+
+export type TAppDispatch = typeof store.dispatch;
+
+export type TRootState = ReturnType<typeof store.getState>;
+
+export const useAppDispatch: () => TAppDispatch = useDispatch;
+
+export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector;

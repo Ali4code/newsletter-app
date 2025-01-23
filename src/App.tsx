@@ -1,13 +1,15 @@
-import "./App.css";
+import { Provider } from "react-redux";
 import { AuthenticationHeader } from "./components/AuthenticationHeader/AuthenticationHeader";
-import { NewsLetter } from "./components/NewsLetter/NewsLetter";
+import { NewsFeed } from "./components/NewsFeed/NewsFeed";
+import { store } from "./store/store";
+import "./App.css";
 
 function App() {
   return (
-    <div>
+    <Provider store={store}>
       <AuthenticationHeader />
-      <NewsLetter />
-    </div>
+      <NewsFeed />
+    </Provider>
   );
 }
 

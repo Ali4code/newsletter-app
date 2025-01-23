@@ -7,7 +7,7 @@ import {
 } from "./NewsApi.types";
 
 export const NewsOutletsApi = createApi({
-  reducerPath: "getNewsDataApi",
+  reducerPath: "NewsOutletsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "" }),
   endpoints: (builder) => ({
     searchNewsApiOrg: builder.query<
@@ -42,6 +42,7 @@ export const NewsOutletsApi = createApi({
 
 export const {
   useLazySearchNewsApiOrgQuery,
+  useGetHeadlinesNewsApiOrgQuery,
   useLazyGetHeadlinesNewsApiOrgQuery,
   useLazyGetSourcesNewsApiOrgQuery,
 } = NewsOutletsApi;
