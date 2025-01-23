@@ -20,11 +20,11 @@ export const NewsFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
   return (
     <div className={Classes.news_feed_container}>
       {isLoading && (
-        <div className={Classes.skeletons_container}>
+        <>
           {Array.from({ length: 5 }).map((_, index) => (
             <ArticleRowSkeleton key={index} />
           ))}
-        </div>
+        </>
       )}
 
       {data?.articles?.map((article) => (
