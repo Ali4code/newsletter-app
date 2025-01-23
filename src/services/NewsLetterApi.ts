@@ -6,16 +6,16 @@ import {
   TTopHeadlinesNewsApiOrgRequest,
 } from "./NewsApi.types";
 
-export const NewsOutletsApi = createApi({
+export const NewsOrgApi = createApi({
   reducerPath: "NewsOutletsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://newsapi.org/v2" }),
   endpoints: (builder) => ({
     searchNewsApiOrg: builder.query<
       TNewsApiOrgResponse,
       TSearchNewsApiOrgRequest
     >({
       query: ({ apiKey, searchParam, from, to }) => ({
-        url: `https://newsapi.org/v2/everything?q=${searchParam}&from=${from}&to=${to}`,
+        url: `/everything?q=${searchParam}&from=${from}&to=${to}`,
         headers: { "X-Api-Key": apiKey },
       }),
     }),
@@ -24,16 +24,15 @@ export const NewsOutletsApi = createApi({
       TTopHeadlinesNewsApiOrgRequest
     >({
       query: ({ apiKey, category, sources }) => ({
-        url:
-          "https://newsapi.org/v2/top-headlines?" + category
-            ? `category=${category}`
-            : `sources=${sources}`,
+        url: category
+          ? `/top-headlines?category=${category}&apiKey=${apiKey}`
+          : `/top-headlines?sources=${sources}`,
         headers: { "X-Api-Key": apiKey },
       }),
     }),
     getSourcesNewsApiOrg: builder.query<TSourcesNewsApiOrgResponse, string>({
       query: (apiKey) => ({
-        url: "https://newsapi.org/v2/top-headlines/sources",
+        url: "/top-headlines/sources",
         headers: { "X-Api-Key": apiKey },
       }),
     }),
@@ -45,4 +44,4 @@ export const {
   useGetHeadlinesNewsApiOrgQuery,
   useLazyGetHeadlinesNewsApiOrgQuery,
   useLazyGetSourcesNewsApiOrgQuery,
-} = NewsOutletsApi;
+} = NewsOrgApi;

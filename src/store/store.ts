@@ -4,13 +4,13 @@ import {
   useSelector,
 } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { NewsOutletsApi } from "../services/NewsLetterApi";
+import { NewsOrgApi } from "../services/NewsLetterApi";
 
 const middleware = (getDefaultMiddleware: any) =>
-  getDefaultMiddleware().concat(NewsOutletsApi.middleware);
+  getDefaultMiddleware().concat(NewsOrgApi.middleware);
 
 const reducer = {
-  [NewsOutletsApi.reducerPath]: NewsOutletsApi.reducer,
+  [NewsOrgApi.reducerPath]: NewsOrgApi.reducer,
 };
 
 const config = {
