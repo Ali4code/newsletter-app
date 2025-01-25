@@ -9,7 +9,7 @@ export const TheGuardianApi = BaseApi.injectEndpoints({
     searchGuardian: builder.query<TGuardianResponse, TSearchGuardianRequest>({
       query: ({ apiKey, searchParam, from, to }) => ({
         url:
-          `content.guardianapis.com/search?api-key=${apiKey}&` +
+          `content.guardianapis.com/search?api-key=${apiKey}&show-fields=all&` +
           (from ? `&from-date=${from}` : "") +
           (to ? `&to-date=${to}` : "") +
           (searchParam ? `&q=${searchParam}` : ""),

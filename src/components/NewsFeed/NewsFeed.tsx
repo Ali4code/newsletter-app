@@ -5,18 +5,19 @@ import { ArticleRow } from "../ArticleRow/ArticleRow";
 import Classes from "./NewsFeed.module.css";
 import { ArticleRowSkeleton } from "../ArticleRow/ArticleRow.skeleton";
 import { ArticleList } from "../ArticleList/ArticleList";
+import { TPreferences } from "./NewsFeed.types";
 
 export const NewsFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
-  const [preferences, setPreferences] = useState({
-    category: "general",
-  });
+  const [preferences, setPreferences] = useState<TPreferences>({});
 
   const { data, isLoading } = useGetHeadlinesNewsApiOrgQuery(
     {
       apiKey: apiKeys?.newsApiOrg,
-      category: "general",
+      category: preferences.category,
     },
     { skip: !apiKeys?.newsApiOrg }
   );
+
+  
   return <ArticleList isLoading={isLoading} articles={data?.articles} />;
 };

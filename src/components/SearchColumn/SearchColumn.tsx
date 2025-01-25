@@ -1,4 +1,3 @@
-
 import Classes from "./SearchColumn.module.css";
 import { API_SOURCES } from "./SearchColumn.constants";
 
@@ -14,7 +13,7 @@ export const SearchColumn = ({
     searchParam?: string;
     from?: string;
     to?: string;
-    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES]['id'];
+    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES]["id"];
   };
   onSearch: () => void;
 }) => {
@@ -47,17 +46,29 @@ export const SearchColumn = ({
             onChange={onChange}
             name="searchParam"
             id="searchParam"
-            value={searchFilters?.searchParam ?? ''}
+            value={searchFilters?.searchParam ?? ""}
             type="text"
           />
         </div>
         <div>
           <label htmlFor="from">From</label>
-          <input type="date" value={searchFilters.from} />
+          <input
+            type="date"
+            name="from"
+            id="from"
+            value={searchFilters.from ?? ""}
+            onChange={onChange}
+          />
         </div>
         <div>
-          <label htmlFor="to">Ta o</label>
-          <input type="date" value={searchFilters.to} />
+          <label htmlFor="to">To</label>
+          <input
+            type="date"
+            name="to"
+            id="to"
+            value={searchFilters.to ?? ""}
+            onChange={onChange}
+          />
         </div>
         <button onClick={onSearch}>Search</button>
       </div>
