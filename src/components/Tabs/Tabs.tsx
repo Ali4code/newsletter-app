@@ -30,7 +30,7 @@ export const Tabs = ({
     <div className="flex_col">
       <div className={Classes.tabs_wrapper}>
         {Object.keys(tabs)?.map((key) => {
-          const isSelected = selectedTab.name === tabs[key].name;
+          const isSelected = selectedTab?.name === tabs[key].name;
           if (key === "authorization") {
             return (
               <div

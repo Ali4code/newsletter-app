@@ -7,6 +7,8 @@ import {
   setActionApiKeys,
   TApiKeys,
 } from "../../store/authSlice";
+import { setActionSelectedTab } from "../../store/tabsSlice";
+import { TABS } from "../Navbar/Navbar.constants";
 
 export const AuthenticationFrom = () => {
   const storedApiKeys = useSelector(selectApiKeys);
@@ -31,6 +33,7 @@ export const AuthenticationFrom = () => {
     event.preventDefault();
     localStorage.setItem(API_KEYS_LOCAL_STORAGE_KEY, JSON.stringify(apiKeys));
     dispatch(setActionApiKeys({ apiKeys }));
+    dispatch(setActionSelectedTab({ selectedTab: TABS.news }));
   };
 
   return (
