@@ -14,10 +14,11 @@ export const SearchColumn = ({
     searchParam?: string;
     from?: string;
     to?: string;
-    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES];
+    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES]['id'];
   };
   onSearch: () => void;
 }) => {
+  console.log(555, searchFilters);
   return (
     <div className={Classes.search_column}>
       <div className={Classes.title}>Search for articles</div>
@@ -26,7 +27,7 @@ export const SearchColumn = ({
         <select
           name="source"
           onChange={onChange}
-          value={searchFilters?.source?.id || "none"}
+          value={searchFilters?.source || "none"}
         >
           <option value="none" disabled>
             Select your source
@@ -34,7 +35,7 @@ export const SearchColumn = ({
           {Object.keys(API_SOURCES).map((key) => (
             <option
               key={API_SOURCES[key as keyof typeof API_SOURCES].id}
-              value={key}
+              value={API_SOURCES[key as keyof typeof API_SOURCES].id}
             >
               {API_SOURCES[key as keyof typeof API_SOURCES].name}
             </option>
@@ -46,9 +47,9 @@ export const SearchColumn = ({
             onChange={onChange}
             name="searchParam"
             id="searchParam"
-            value={searchFilters.searchParam}
+            value={searchFilters?.searchParam ?? ''}
             type="text"
-          ></input>
+          />
         </div>
         <div>
           <label htmlFor="from">From</label>

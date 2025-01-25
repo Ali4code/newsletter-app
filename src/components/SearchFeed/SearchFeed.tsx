@@ -13,7 +13,7 @@ export const SearchFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
     searchParam?: string;
     from?: string;
     to?: string;
-    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES];
+    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES]['id'];
   }>({});
 
   const onChange = (
@@ -33,7 +33,7 @@ export const SearchFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
     isGuardianLoading || isNewsApiLoading || isNewYorkTimesLoading;
 
   const onSearch = () => {
-    switch (searchFilters.source?.id) {
+    switch (searchFilters.source) {
       case API_SOURCES.THE_GUARDIAN.id:
         fetchGuardianSearch({
           apiKey: apiKeys?.guardianNews,
