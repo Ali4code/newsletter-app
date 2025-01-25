@@ -1,11 +1,14 @@
-import "./App.css";
-import { NewsLetterContainer } from "./components/NewsLetterContainer";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { NavbarContainer } from "./components/Navbar/NavbarContainer";
+import { MainLayout } from "./components/MainLayout/MainLayout";
 
 function App() {
   return (
-    <>
-      <NewsLetterContainer />
-    </>
+    <Provider store={store}>
+      <NavbarContainer />
+      <MainLayout />
+    </Provider>
   );
 }
 
