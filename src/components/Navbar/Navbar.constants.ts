@@ -1,14 +1,14 @@
 export const TABS = {
   authorization: {
-    name: "Auth*",
+    name: "Authentication",
     color: "red",
   },
-  home: {
-    name: "Home",
+  news: {
+    name: "News",
     color: "grey",
   },
-  personalized: {
-    name: "Personalized",
+  search: {
+    name: "Search",
     color: "grey",
   },
 };

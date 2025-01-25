@@ -2,7 +2,6 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { type TRootState } from "./store";
 import { API_KEYS_LOCAL_STORAGE_KEY } from "../constants";
 
-
 export type TApiKeys = {
   newsApiOrg: string;
   guardianNews: string;
@@ -32,4 +31,3 @@ export const AuthSlice = createSlice({
 export const { setActionApiKeys } = AuthSlice.actions;
 
 export const selectApiKeys = (state: TRootState) => state.api?.apiKeys;
-

@@ -7,14 +7,10 @@ import Classes from "./Navbar.module.css";
 export const Navbar = ({
   isSideBarOpen,
   setIsSideBarOpen,
-  onTabSelect,
-  selectedTab,
-  tabs
+  tabs,
 }: {
   isSideBarOpen: boolean;
   setIsSideBarOpen: (isOpen: boolean) => void;
-  selectedTab: string;
-  onTabSelect: (tab: string) => void;
   tabs: { [key: string]: { name: string; color: string } };
 }) => {
   return (
@@ -34,9 +30,9 @@ export const Navbar = ({
       )}
       <div className={Classes.flex}>
         <NewsIcon />
-      <div className={Classes.tabs_wrapper}>
-        <Tabs tabs={tabs} onTabSelect={onTabSelect} selectedTab={selectedTab} />
-      </div>
+        <div className={Classes.tabs_wrapper}>
+          <Tabs tabs={tabs} />
+        </div>
       </div>
     </div>
   );

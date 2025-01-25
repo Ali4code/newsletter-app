@@ -1,10 +1,14 @@
 import { useState } from "react";
-import Classes from "./AuthenticationHeader.module.css";
+import Classes from "./AuthenticationFrom.module.css";
 import { API_KEYS_LOCAL_STORAGE_KEY } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
-import { selectApiKeys, setActionApiKeys, TApiKeys } from "../../store/authSlice";
+import {
+  selectApiKeys,
+  setActionApiKeys,
+  TApiKeys,
+} from "../../store/authSlice";
 
-export const AuthenticationHeader = () => {
+export const AuthenticationFrom = () => {
   const storedApiKeys = useSelector(selectApiKeys);
 
   const [apiKeys, setApiKeys] = useState<TApiKeys>(

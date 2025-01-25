@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { TApiKeys } from "../../utils/useGetApiKeys";
 import { useLazySearchGuardianQuery } from "../../services/TheGuardian/TheGuardian.api";
 import { useLazySearchNewsApiOrgQuery } from "../../services/NewsApi/NewsApi.api";
 import { useLazySearchNewYorkTimesQuery } from "../../services/NewYorkTimes/NewYorkTimes.api";
 import { ArticleList } from "../ArticleList/ArticleList";
 import { SearchColumn } from "../SearchColumn/SearchColumn";
 import { API_SOURCES } from "../SearchColumn/SearchColumn.constants";
+import { useSelector } from "react-redux";
+import { selectApiKeys } from "../../store/authSlice";
 
-export const SearchFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
+export const SearchFeed = () => {
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [searchFilters, setSearchFilters] = useState<{
     searchParam?: string;
     from?: string;
     to?: string;
-    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES]['id'];
+    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES]["id"];
   }>({});
 
   const onChange = (
@@ -21,6 +22,8 @@ export const SearchFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
   ) => {
     setSearchFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const apiKeys = useSelector(selectApiKeys);
 
   const [fetchGuardianSearch, { isLoading: isGuardianLoading }] =
     useLazySearchGuardianQuery();

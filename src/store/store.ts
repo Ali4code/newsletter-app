@@ -4,8 +4,9 @@ import {
   useSelector,
 } from "react-redux";
 import { configureStore, Middleware } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { AuthSlice } from "./authSlice";
+import { TabsSlice } from "./tabsSlice";
 
 export const BaseApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -16,13 +17,13 @@ export const BaseApi = createApi({
   reducerPath: "BaseApi",
 });
 
-
 const middleware = (getDefaultMiddleware: () => Middleware[]) =>
   getDefaultMiddleware().concat(BaseApi.middleware);
 
 const reducer = {
   [BaseApi.reducerPath]: BaseApi.reducer,
   [AuthSlice.name]: AuthSlice.reducer,
+  [TabsSlice.name]: TabsSlice.reducer,
 };
 
 const config = {
