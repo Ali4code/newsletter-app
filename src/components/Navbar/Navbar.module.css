@@ -19,11 +19,6 @@
     align-items: center;
 }
 
-.navbar_tabs {
-    display: inline-block;
-    cursor: pointer;
-}
-
 .mobile_icon {
     display: none;
 }

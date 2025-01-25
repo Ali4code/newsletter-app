@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Classes from "./AuthenticationHeader.module.css";
-import { API_KEYS_LOCAL_STORAGE_KEY, TApiKeys } from "../../utils/useGetApiKeys";
+import { TApiKeys } from "../../utils/useGetApiKeys";
+import { API_KEYS_LOCAL_STORAGE_KEY } from "../../constants";
 
 export const AuthenticationHeader = ({
   setStoredApiKeys,
-  storedApiKeys
+  storedApiKeys,
 }: {
   setStoredApiKeys: React.Dispatch<React.SetStateAction<TApiKeys | undefined>>;
   storedApiKeys: TApiKeys;

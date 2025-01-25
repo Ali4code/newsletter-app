@@ -1,39 +1,26 @@
 import { useState } from "react";
 import Classes from "./Tabs.module.css";
-import { NewsFeed } from "../NewsFeed/NewsFeed";
+// import { NewsFeed } from "../NewsFeed/NewsFeed";
 import { TApiKeys } from "../../utils/useGetApiKeys";
-import { SearchFeed } from "../SearchFeed/SearchFeed";
+// import { SearchFeed } from "../SearchFeed/SearchFeed";
 
-export const Tabs = ({ apiKeys }: { apiKeys: TApiKeys }) => {
-  const [currentTab, setCurrentTab] = useState<"feed" | "search">("feed");
-  const isFeedSelected = currentTab === "feed";
-
+export const Tabs = ({
+  tabs,
+  selectedTab,
+  onSelectTab,
+}: {
+  tabs: Record<string, { name: string; color: string }>;
+  onSelectTab: (tab: string) => void;
+  selectedTab: string;
+}) => {
   return (
     <div className="flex_col">
       <div className={Classes.tabs_header_container}>
-        <div
-          className={
-            isFeedSelected ? Classes.selected_tab : Classes.unselected_tab
-          }
-          onClick={() => setCurrentTab("feed")}
-        >
-          News Feed
-        </div>
-        <div
-          className={
-            !isFeedSelected ? Classes.selected_tab : Classes.unselected_tab
-          }
-          onClick={() => setCurrentTab("search")}
-        >
-          Search Articles
-        </div>
-      </div>
-      <div className={Classes.feed_container}>
-        {isFeedSelected ? (
-          <NewsFeed apiKeys={apiKeys} />
-        ) : (
-          <SearchFeed apiKeys={apiKeys} />
-        )}
+        {Object.keys(tabs)?.map((key) => (
+          <div key={key} className={`${Classes.navbar_tabs} ${Classes.red}`}>
+            {tabs[key].name}
+          </div>
+        ))}
       </div>
     </div>
   );

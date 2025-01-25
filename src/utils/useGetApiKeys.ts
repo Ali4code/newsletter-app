@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-export const API_KEYS_LOCAL_STORAGE_KEY = "api_keys";
+import { API_KEYS_LOCAL_STORAGE_KEY } from "../constants";
 
 export type TApiKeys = {
   newsApiOrg: string;
