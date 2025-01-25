@@ -13,7 +13,11 @@ export const NavbarContainer = () => {
         setIsSideBarOpen={setIsSideMenuOpen}
         tabs={TABS}
       />
-      <Sidebar isOpen={isSideMenuOpen} tabs={TABS} />
+      <Sidebar
+        isOpen={isSideMenuOpen}
+        tabs={TABS}
+        setIsSideMenuOpen={setIsSideMenuOpen}
+      />
     </>
   );
 };

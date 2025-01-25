@@ -1,5 +1,4 @@
 import { Tabs } from "../Tabs/Tabs";
-import { CloseIcon } from "./icons/CloseIcon";
 import { HamburgerIcon } from "./icons/HamburgerIcon";
 import { NewsIcon } from "./icons/NewsIcon";
 import Classes from "./Navbar.module.css";
@@ -15,13 +14,7 @@ export const Navbar = ({
 }) => {
   return (
     <div className={Classes.navbar_container}>
-      {isSideBarOpen ? (
-        <CloseIcon
-          color="black"
-          className={Classes.mobile_icon}
-          onClick={() => setIsSideBarOpen(false)}
-        />
-      ) : (
+      {!isSideBarOpen && (
         <HamburgerIcon
           color="black"
           className={Classes.mobile_icon}
