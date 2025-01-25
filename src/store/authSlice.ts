@@ -30,4 +30,4 @@ export const AuthSlice = createSlice({
 });
 export const { setActionApiKeys } = AuthSlice.actions;
 
-export const selectApiKeys = (state: TRootState) => state.api?.apiKeys;
+export const selectApiKeys = (state: TRootState) => state.api?.apiKeys as TApiKeys;

@@ -7,8 +7,10 @@ import { SearchColumn } from "../SearchColumn/SearchColumn";
 import { API_SOURCES } from "../SearchColumn/SearchColumn.constants";
 import { useSelector } from "react-redux";
 import { selectApiKeys } from "../../store/authSlice";
+import { useAuthAlert } from "../../utils/useAuthAlert";
 
 export const SearchFeed = () => {
+  useAuthAlert();
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [searchFilters, setSearchFilters] = useState<{
     searchParam?: string;

@@ -4,8 +4,10 @@ import { ArticleList } from "../ArticleList/ArticleList";
 import { TPreferences } from "./NewsFeed.types";
 import { useSelector } from "react-redux";
 import { selectApiKeys } from "../../store/authSlice";
+import { useAuthAlert } from "../../utils/useAuthAlert";
 
 export const NewsFeed = () => {
+  useAuthAlert();
   const apiKeys = useSelector(selectApiKeys);
   const [preferences, setPreferences] = useState<TPreferences>({});
 
