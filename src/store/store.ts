@@ -5,6 +5,7 @@ import {
 } from "react-redux";
 import { configureStore, Middleware } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { AuthSlice } from "./authSlice";
 
 export const BaseApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -21,6 +22,7 @@ const middleware = (getDefaultMiddleware: () => Middleware[]) =>
 
 const reducer = {
   [BaseApi.reducerPath]: BaseApi.reducer,
+  [AuthSlice.name]: AuthSlice.reducer,
 };
 
 const config = {

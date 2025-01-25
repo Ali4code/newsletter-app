@@ -1,15 +1,12 @@
 import { useState } from "react";
 import Classes from "./AuthenticationHeader.module.css";
-import { TApiKeys } from "../../utils/useGetApiKeys";
 import { API_KEYS_LOCAL_STORAGE_KEY } from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
+import { selectApiKeys, setActionApiKeys, TApiKeys } from "../../store/authSlice";
 
-export const AuthenticationHeader = ({
-  setStoredApiKeys,
-  storedApiKeys,
-}: {
-  setStoredApiKeys: React.Dispatch<React.SetStateAction<TApiKeys | undefined>>;
-  storedApiKeys: TApiKeys;
-}) => {
+export const AuthenticationHeader = () => {
+  const storedApiKeys = useSelector(selectApiKeys);
+
   const [apiKeys, setApiKeys] = useState<TApiKeys>(
     storedApiKeys || {
       newsApiOrg: "",
@@ -19,16 +16,17 @@ export const AuthenticationHeader = ({
   );
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setApiKeys((prev) => ({
+    setApiKeys((prev: TApiKeys) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
   };
 
+  const dispatch = useDispatch();
   const onSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     localStorage.setItem(API_KEYS_LOCAL_STORAGE_KEY, JSON.stringify(apiKeys));
-    setStoredApiKeys(apiKeys);
+    dispatch(setActionApiKeys({ apiKeys }));
   };
 
   return (
