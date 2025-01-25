@@ -1,28 +1,36 @@
-export type TSearchNewsApiOrgRequest = {
+export type TSearchGuardianRequest = {
   apiKey: string;
-  searchParam: string;
-  from: string;
-  to: string;
+  searchParam?: string;
+  from?: string;
+  to?: string;
 };
 
-export type TArticle = {
-  source: {
-    id: string;
-    name: string;
+export type TArticleGuardian = {
+  id: string;
+  type: string;
+  sectionId:string;
+  sectionName: string;
+  webPublicationDate: string;
+  webTitle: string;
+  webUrl: string;
+  apiUrl: string; 
+  isHosted: false;
+  pillarId: string;
+  pillarName: string;
+};
+
+export type TGuardianResponse = {
+  response: {
+    status: string;
+    userTier: string;
+    total: number;
+    startIndex: number;
+    pageSize: number;
+    currentPage: number;
+    pages: number;
+    orderBy: string;
+    results: TArticleGuardian[];
   };
-  author: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
-};
-
-export type TNewsApiOrgResponse = {
-  status: string;
-  totalResults: number;
-  articles: TArticle[];
 };
 
 export type TTopHeadlinesNewsApiOrgRequest = {
