@@ -1,47 +1,24 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  TNewsApiOrgResponse,
-  TSearchNewsApiOrgRequest,
-  TSourcesNewsApiOrgResponse,
-  TTopHeadlinesNewsApiOrgRequest,
+  TNewYorTimesRequest,
+  TNewYorTimesResponse,
 } from "./NewYorkTimes.types";
+import { BaseApi } from "../../store/store";
 
-export const NewsOrgApi = createApi({
-  reducerPath: "NewsOutletsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://newsapi.org/v2" }),
+export const TheNewYorkTimesApi = BaseApi.injectEndpoints({
   endpoints: (builder) => ({
-    searchNewsApiOrg: builder.query<
-      TNewsApiOrgResponse,
-      TSearchNewsApiOrgRequest
+    searchNewYorkTimes: builder.query<
+      TNewYorTimesResponse,
+      TNewYorTimesRequest
     >({
       query: ({ apiKey, searchParam, from, to }) => ({
-        url: `/everything?q=${searchParam}&from=${from}&to=${to}`,
-        headers: { "X-Api-Key": apiKey },
-      }),
-    }),
-    getHeadlinesNewsApiOrg: builder.query<
-      TNewsApiOrgResponse,
-      TTopHeadlinesNewsApiOrgRequest
-    >({
-      query: ({ apiKey, category, sources }) => ({
-        url: category
-          ? `/top-headlines?category=${category}&apiKey=${apiKey}`
-          : `/top-headlines?sources=${sources}`,
-        headers: { "X-Api-Key": apiKey },
-      }),
-    }),
-    getSourcesNewsApiOrg: builder.query<TSourcesNewsApiOrgResponse, string>({
-      query: (apiKey) => ({
-        url: "/top-headlines/sources",
-        headers: { "X-Api-Key": apiKey },
+        url:
+          `api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchParam}&api-key=${apiKey}` +
+          (from ? `&from-date=${from}` : "") +
+          (to ? `&to-date=${to}` : "") +
+          (searchParam ? `&q=${searchParam}` : ""),
       }),
     }),
   }),
 });
 
-export const {
-  useLazySearchNewsApiOrgQuery,
-  useGetHeadlinesNewsApiOrgQuery,
-  useLazyGetHeadlinesNewsApiOrgQuery,
-  useLazyGetSourcesNewsApiOrgQuery,
-} = NewsOrgApi;
+export const { useLazySearchNewYorkTimesQuery } = TheNewYorkTimesApi;
