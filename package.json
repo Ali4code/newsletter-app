@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --base=./", 
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -31,5 +31,5 @@
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
   },
-  "homepage": "https://Ali4code.github.io/newsletter-app"
+  "homepage": "https://ali4code.github.io/newsletter-app"
 }
