@@ -11,7 +11,7 @@ export const NavbarContainer = () => {
   const lastSelectedTab = JSON.parse(
     localStorage.getItem(WEBPAGE_STATE_LOCAL_STORAGE_KEY) ?? "{}"
   ).selectedTab;
-  const [selectedTab, setSelectedTab] = useState(lastSelectedTab);
+  const [selectedTab, setSelectedTab] = useState<string>(lastSelectedTab);
 
   const onTabSelect = (tab: string) => {
     const webpageState = {
