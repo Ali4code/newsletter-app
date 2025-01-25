@@ -26,7 +26,8 @@ export const ArticleList = ({
       )}
 
       {articles?.map((article) => (
-        <ArticleRow key={article?.id ?? Math.random()} article={article} />
+        //fix here
+        <ArticleRow key={Math.random()} article={article} />
       ))}
     </div>
   );
