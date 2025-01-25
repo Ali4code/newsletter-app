@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useGetHeadlinesNewsApiOrgQuery } from "../../services/NewsApi/NewsApi.api";
 import { TApiKeys } from "../../utils/useGetApiKeys";
-import { ArticleRow } from "../ArticleRow/ArticleRow";
-import Classes from "./NewsFeed.module.css";
-import { ArticleRowSkeleton } from "../ArticleRow/ArticleRow.skeleton";
 import { ArticleList } from "../ArticleList/ArticleList";
 import { TPreferences } from "./NewsFeed.types";
 
@@ -13,7 +10,7 @@ export const NewsFeed = ({ apiKeys }: { apiKeys: TApiKeys }) => {
   const { data, isLoading } = useGetHeadlinesNewsApiOrgQuery(
     {
       apiKey: apiKeys?.newsApiOrg,
-      category: preferences.category,
+      category: 'business'
     },
     { skip: !apiKeys?.newsApiOrg }
   );

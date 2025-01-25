@@ -1,4 +1,4 @@
-export const NEWS_API_ORG_CATEGORIES = {
+export const CATEGORIES = {
   business: "business",
   entertainment: "entertainment",
   general: "general",

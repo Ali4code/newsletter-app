@@ -24,10 +24,10 @@ export const NewsOrgApi = BaseApi.injectEndpoints({
       TNewsApiOrgResponse,
       TTopHeadlinesNewsApiOrgRequest
     >({
-      query: ({ apiKey, category, sources }) => ({
-        url: category
-          ? `newsapi.org/v2/top-headlines?category=${category}`
-          : `newsapi.org/v2/top-headlines?sources=${sources}`,
+      query: ({ apiKey, category }) => ({
+        url:
+          `newsapi.org/v2/top-headlines?apiKey=${apiKey}` +
+          (category ? `&category=${category}` : ""),
         headers: { "X-Api-Key": apiKey },
       }),
     }),

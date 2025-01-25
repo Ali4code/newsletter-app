@@ -3,19 +3,41 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 24px;
     gap: 16px;
-    background-color: grey;
+    background-color: #292f33 !important;
     font-weight: 700;
-    color: bisque;
+    color: grey;
+    font-size: 24px;
 }
 
-.burger_icon {
+.tabs_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 16px;
+    align-items: center;
+}
+
+.navbar_tabs {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.mobile_icon {
     display: none;
 }
 
 @media only screen and (max-width: 768px) {
-    .burger_icon {
+    .mobile_icon {
         display: inline-block;
     }
+
+    .navbar_tabs {
+        display: none;
+    }
+
+}
+.red {
+    color: red
 }
