@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Classes from "./Tabs.module.css";
 import { NewsFeed } from "../NewsFeed/NewsFeed";
-import { SearchColumn } from "../SearchColumn/SearchColumn";
 import { TApiKeys } from "../../utils/useGetApiKeys";
+import { SearchFeed } from "../SearchFeed/SearchFeed";
 
 export const Tabs = ({ apiKeys }: { apiKeys: TApiKeys }) => {
   const [currentTab, setCurrentTab] = useState<"feed" | "search">("feed");
@@ -32,7 +32,7 @@ export const Tabs = ({ apiKeys }: { apiKeys: TApiKeys }) => {
         {isFeedSelected ? (
           <NewsFeed apiKeys={apiKeys} />
         ) : (
-          <SearchColumn apiKeys={apiKeys} />
+          <SearchFeed apiKeys={apiKeys} />
         )}
       </div>
     </div>
