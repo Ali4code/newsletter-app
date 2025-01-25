@@ -25,12 +25,8 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .selected_tab {
-        display: none;
-    }
 
-    .unselected_tab {
-        display: none;
+    .tabs_wrapper {
+        flex-direction: column;
     }
-
 }

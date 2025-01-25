@@ -32,9 +32,11 @@ export const Navbar = ({
           onClick={() => setIsSideBarOpen(true)}
         />
       )}
-      <div className={Classes.tabs_wrapper}>
+      <div className={Classes.flex}>
         <NewsIcon />
+      <div className={Classes.tabs_wrapper}>
         <Tabs tabs={tabs} onTabSelect={onTabSelect} selectedTab={selectedTab} />
+      </div>
       </div>
     </div>
   );

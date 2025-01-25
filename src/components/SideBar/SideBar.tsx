@@ -1,7 +1,11 @@
+import { Tabs } from "../Tabs/Tabs";
 import Classes from "./SideBar.module.css";
 
 export const Sidebar = ({
   isOpen,
+  onTabSelect,
+  selectedTab,
+  tabs,
 }: {
   isOpen: boolean;
   selectedTab: string;
@@ -11,9 +15,7 @@ export const Sidebar = ({
   if (!isOpen) return <></>;
   return (
     <div className={Classes.sidebar_container}>
-      <div className={`${Classes.sidebar_tabs} ${Classes.red}`}>Auth*</div>
-      <div className={Classes.sidebar_tabs}>Home</div>
-      <div className={Classes.sidebar_tabs}>Personalized</div>
+      <Tabs tabs={tabs} onTabSelect={onTabSelect} selectedTab={selectedTab} />
     </div>
   );
 };
