@@ -1,5 +1,5 @@
 export const API_SOURCES = {
-  newYorkTimes: "New York Times",
-  theGuardian: "The Guardian",
-  newsApiOrg: "News Api",
-} as const
+  NEW_YORK_TIMES: { name: "New York Times", id: "newYorkTimes" },
+  THE_GUARDIAN: { name: "The Guardian", id: "theGuardian" },
+  THE_NEWS_API_ORG: { name: "News Api Org", id: "newsApiOrg" },
+} as const;

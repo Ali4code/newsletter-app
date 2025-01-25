@@ -4,32 +4,71 @@ import { TApiKeys } from "../../utils/useGetApiKeys";
 import { API_SOURCES } from "./SearchColumn.constants";
 import { useLazySearchGuardianQuery } from "../../services/TheGuardian/TheGuardian.api";
 import { useLazySearchNewsApiOrgQuery } from "../../services/NewsApi/NewsApi.api";
+import { useLazySearchNewYorkTimesQuery } from "../../services/NewYorkTimes/NewYorkTimes.api";
 
 export const SearchColumn = ({
   apiKeys,
   setSearchResults,
 }: {
   apiKeys: TApiKeys;
+  setSearchResults: (articles: any[]) => void;
 }) => {
   const [searchFilters, setSearchFilters] = useState<{
     searchParam?: string;
     from?: string;
     to?: string;
-    source?: string;
+    source?: (typeof API_SOURCES)[keyof typeof API_SOURCES];
   }>({});
 
-  console.log(4444, searchFilters);
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setSearchFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const [fetchGaurdianSearch] = useLazySearchGuardianQuery();
+  const [fetchGuardianSearch] = useLazySearchGuardianQuery();
   const [fetchNewsApiSearch] = useLazySearchNewsApiOrgQuery();
-  // const [fetchNewYorkTimesSearch] = useLAzyNew();
+  const [fetchNewYorkTimesSearch] = useLazySearchNewYorkTimesQuery();
 
   const onSearch = () => {
+    switch (searchFilters.source?.id) {
+      case API_SOURCES.THE_GUARDIAN.id:
+        fetchGuardianSearch({
+          apiKey: apiKeys?.guardianNews,
+          searchParam: searchFilters.searchParam,
+          from: searchFilters.from,
+          to: searchFilters.to,
+        })
+          .unwrap()
+          .then((data) => {
+            setSearchResults(data.response.results);
+          });
+        break;
+      case API_SOURCES.THE_NEWS_API_ORG.id:
+        fetchNewsApiSearch({
+          apiKey: apiKeys?.newsApiOrg,
+          searchParam: searchFilters.searchParam,
+          from: searchFilters.from,
+          to: searchFilters.to,
+        })
+          .unwrap()
+          .then((data) => {
+            setSearchResults(data.articles);
+          });
+        break;
+      case API_SOURCES.NEW_YORK_TIMES.id:
+        fetchNewYorkTimesSearch({
+          apiKey: apiKeys?.nyTimes,
+          searchParam: searchFilters.searchParam,
+          from: searchFilters.from,
+          to: searchFilters.to,
+        })
+          .unwrap()
+          .then((data) => {
+            setSearchResults(data.response.docs);
+          });
+        break;
+    }
     fetchNewsApiSearch({
       apiKey: apiKeys?.newsApiOrg,
       searchParam: searchFilters.searchParam,
@@ -50,14 +89,17 @@ export const SearchColumn = ({
         <select
           name="source"
           onChange={onChange}
-          value={searchFilters?.source || "none"}
+          value={searchFilters?.source?.id || "none"}
         >
           <option value="none" disabled>
             Select your source
           </option>
-          {Object.keys(API_SOURCES).map((api) => (
-            <option key={api} value={api}>
-              {API_SOURCES[api]}
+          {Object.keys(API_SOURCES).map((key) => (
+            <option
+              key={API_SOURCES[key as keyof typeof API_SOURCES].id}
+              value={key}
+            >
+              {API_SOURCES[key as keyof typeof API_SOURCES].name}
             </option>
           ))}
         </select>

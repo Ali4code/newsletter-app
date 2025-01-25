@@ -1,8 +1,8 @@
 export type TNewYorTimesRequest = {
   apiKey: string;
-  searchParam: string;
-  from: string;
-  to: string;
+  searchParam?: string;
+  from?: string;
+  to?: string;
 };
 
 export type TArticleNewYorkTimes = {
