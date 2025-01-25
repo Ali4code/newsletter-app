@@ -5,7 +5,12 @@ import { API_SOURCES } from "./SearchColumn.constants";
 import { useLazySearchGuardianQuery } from "../../services/TheGuardian/TheGuardian.api";
 import { useLazySearchNewsApiOrgQuery } from "../../services/NewsApi/NewsApi.api";
 
-export const SearchColumn = ({ apiKeys }: { apiKeys: TApiKeys }) => {
+export const SearchColumn = ({
+  apiKeys,
+  setSearchResults,
+}: {
+  apiKeys: TApiKeys;
+}) => {
   const [searchFilters, setSearchFilters] = useState<{
     searchParam?: string;
     from?: string;
@@ -13,6 +18,7 @@ export const SearchColumn = ({ apiKeys }: { apiKeys: TApiKeys }) => {
     source?: string;
   }>({});
 
+  console.log(4444, searchFilters);
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -23,7 +29,18 @@ export const SearchColumn = ({ apiKeys }: { apiKeys: TApiKeys }) => {
   const [fetchNewsApiSearch] = useLazySearchNewsApiOrgQuery();
   // const [fetchNewYorkTimesSearch] = useLAzyNew();
 
-  const onSearch = () => {};
+  const onSearch = () => {
+    fetchNewsApiSearch({
+      apiKey: apiKeys?.newsApiOrg,
+      searchParam: searchFilters.searchParam,
+      from: searchFilters.from,
+      to: searchFilters.to,
+    })
+      .unwrap()
+      .then((data) => {
+        setSearchResults(data.articles);
+      });
+  };
 
   return (
     <div className={Classes.search_column}>
@@ -62,7 +79,7 @@ export const SearchColumn = ({ apiKeys }: { apiKeys: TApiKeys }) => {
           <label htmlFor="to">Ta o</label>
           <input type="date" value={searchFilters.to} />
         </div>
-        <button>Search</button>
+        <button onClick={onSearch}>Search</button>
       </div>
     </div>
   );

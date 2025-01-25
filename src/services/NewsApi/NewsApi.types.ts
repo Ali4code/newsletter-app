@@ -1,10 +1,10 @@
 import { NEWS_API_ORG_CATEGORIES } from "./NewsApi.constants";
 
 export type TSearchNewsApiOrgRequest = {
-  apiKey: string;
-  searchParam: string;
-  from: string;
-  to: string;
+  apiKey?: string;
+  searchParam?: string;
+  from?: string;
+  to?: string;
 };
 
 export type TArticle = {

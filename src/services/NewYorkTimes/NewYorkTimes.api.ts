@@ -12,9 +12,9 @@ export const TheNewYorkTimesApi = BaseApi.injectEndpoints({
     >({
       query: ({ apiKey, searchParam, from, to }) => ({
         url:
-          `api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchParam}&api-key=${apiKey}` +
-          (from ? `&from-date=${from}` : "") +
-          (to ? `&to-date=${to}` : "") +
+          `api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}` +
+          (from ? `&begin_date=${from}` : "") +
+          (to ? `&end_date=${to}` : "") +
           (searchParam ? `&q=${searchParam}` : ""),
       }),
     }),
