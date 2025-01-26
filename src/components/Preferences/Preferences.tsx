@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import { TPreferences, TSource, TWebState } from "./Preferences.types";
+import {
+  TCategory,
+  TPreferences,
+  TSource,
+  TWebState,
+} from "./Preferences.types";
 import Classes from "./Preferences.module.css";
 import { API_SOURCES } from "../SearchColumn/SearchColumn.constants";
 import { WEBPAGE_STATE_LOCAL_STORAGE_KEY } from "../../constants";
+import { CATEGORIES } from "../../services/NewsApi/NewsApi.constants";
 
 export const Preferences = () => {
   // to keep the preferences in local storage to prevent user losing their selected filters
@@ -37,9 +43,17 @@ export const Preferences = () => {
     });
   };
 
+  const onCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value as TCategory;
+    setPreferences((prev) => ({
+      ...prev,
+      category: value as TCategory,
+    }));
+  };
+
   return (
     <div className={Classes.preferences}>
-      <div>
+      <div className={Classes.source}>
         Select sources:
         {Object.keys(API_SOURCES).map((key) => (
           <div key={API_SOURCES[key as keyof typeof API_SOURCES].id}>
@@ -62,8 +76,25 @@ export const Preferences = () => {
         ))}
       </div>
 
-      <div>
-        
+      <div className={Classes.category}>
+        Select category:
+        <select
+          name="category"
+          onChange={onCategoryChange}
+          value={preferences?.category || "none"}
+        >
+          <option value="none" disabled>
+            Select a Category
+          </option>
+          {Object.keys(CATEGORIES).map((key) => (
+            <option
+              key={CATEGORIES[key as keyof typeof CATEGORIES]}
+              value={CATEGORIES[key as keyof typeof CATEGORIES]}
+            >
+              {CATEGORIES[key as keyof typeof CATEGORIES]}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
