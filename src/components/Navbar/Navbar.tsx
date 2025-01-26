@@ -21,6 +21,7 @@ export const Navbar = ({
           onClick={() => setIsSideBarOpen(true)}
         />
       )}
+      Ali News
       <div className={Classes.flex}>
         <NewsIcon />
         <div className={Classes.tabs_wrapper}>

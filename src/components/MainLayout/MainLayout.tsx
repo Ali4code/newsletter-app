@@ -9,7 +9,7 @@ export const MainLayout = () => {
   const selectedTab = useSelector(selectSelectedTab);
 
   if (!selectedTab) {
-    return <AuthenticationFrom />;
+    return <NewsFeed />;
   }
 
   if (selectedTab.name === TABS.news.name) {

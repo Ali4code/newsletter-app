@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { type TRootState } from "./store";
-import { API_KEYS_LOCAL_STORAGE_KEY } from "../constants";
+import { API_KEYS_LOCAL_STORAGE_KEY, K_E_Y_S } from "../constants";
 
 export type TApiKeys = {
   newsApiOrg: string;
@@ -9,10 +9,10 @@ export type TApiKeys = {
 };
 
 const apiKeysFromStorage = JSON.parse(
-  localStorage.getItem(API_KEYS_LOCAL_STORAGE_KEY) ?? "{}"
+  localStorage.getItem(API_KEYS_LOCAL_STORAGE_KEY) ?? "null"
 );
 const initialState: { apiKeys: TApiKeys } = {
-  apiKeys: apiKeysFromStorage,
+  apiKeys: apiKeysFromStorage ?? K_E_Y_S,
 };
 
 export const AuthSlice = createSlice({
