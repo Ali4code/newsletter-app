@@ -7,7 +7,7 @@ export type TSearchNewsApiOrgRequest = {
   to?: string;
 };
 
-export type TArticleNewsApi = {
+export type TNewsApiArticle = {
   source: {
     id: string;
     name: string;
@@ -24,7 +24,7 @@ export type TArticleNewsApi = {
 export type TNewsApiOrgResponse = {
   status: string;
   totalResults: number;
-  articles: TArticleNewsApi[];
+  articles: TNewsApiArticle[];
 };
 
 export type TTopHeadlinesNewsApiOrgRequest = {
