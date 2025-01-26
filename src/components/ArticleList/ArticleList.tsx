@@ -20,7 +20,7 @@ export const ArticleList = ({
   if (isLoading) {
     return (
       <div className={Classes.news_feed_container}>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {Array.from({ length: 15 }).map((_, index) => (
           <ArticleCardSkeleton key={index} />
         ))}
       </div>
