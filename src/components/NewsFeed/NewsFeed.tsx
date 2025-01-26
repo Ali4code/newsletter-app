@@ -66,7 +66,7 @@ export const NewsFeed = () => {
         onCategoryChange={onCategoryChange}
         onSourceChange={onSourceChange}
       />
-      <ArticleList isLoading={isLoading} articles={data?.articles} />;
+      <ArticleList isLoading={isLoading} articles={data} />
     </>
   );
 };

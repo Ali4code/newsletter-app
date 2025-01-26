@@ -43,16 +43,25 @@ export const Preferences = ({
         <CategorySelect
           categories={API_SOURCES.NEW_YORK_TIMES.categories}
           onCategoryChange={onCategoryChange}
-          title="Select NewsApi.org Category"
+          title="Select New York Times category"
           selectedCategory={preferences.category?.newYorkTimes}
           source={API_SOURCES.NEW_YORK_TIMES.id}
+        />
+      )}
+      {preferences?.sources?.includes(API_SOURCES.THE_GUARDIAN.id) && (
+        <CategorySelect
+          categories={API_SOURCES.THE_GUARDIAN.categories}
+          onCategoryChange={onCategoryChange}
+          title="Select The Guardian category"
+          selectedCategory={preferences.category?.theGuardian}
+          source={API_SOURCES.THE_GUARDIAN.id}
         />
       )}
       {preferences?.sources?.includes(API_SOURCES.THE_NEWS_API_ORG.id) && (
         <CategorySelect
           categories={API_SOURCES.THE_NEWS_API_ORG.categories}
           onCategoryChange={onCategoryChange}
-          title="Select NewsApi.org Category"
+          title="Select NewsApi.org category"
           selectedCategory={preferences.category?.newsApiOrg}
           source={API_SOURCES.THE_NEWS_API_ORG.id}
         />

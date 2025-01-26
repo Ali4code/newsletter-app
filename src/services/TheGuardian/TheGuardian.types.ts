@@ -3,6 +3,7 @@ export type TSearchGuardianRequest = {
   searchParam?: string;
   from?: string;
   to?: string;
+  category?: string;
 };
 
 export type TArticleGuardian = {

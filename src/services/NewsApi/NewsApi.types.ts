@@ -7,7 +7,7 @@ export type TSearchNewsApiOrgRequest = {
   to?: string;
 };
 
-export type TArticle = {
+export type TArticleNewsApi = {
   source: {
     id: string;
     name: string;
