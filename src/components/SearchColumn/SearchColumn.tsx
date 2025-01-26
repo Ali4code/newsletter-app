@@ -17,7 +17,6 @@ export const SearchColumn = ({
   };
   onSearch: () => void;
 }) => {
-  console.log(555, searchFilters);
   return (
     <div className={Classes.search_column}>
       <div className={Classes.title}>Search for articles</div>

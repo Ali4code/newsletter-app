@@ -17,7 +17,7 @@ export const NewsOrgApi = BaseApi.injectEndpoints({
           `newsapi.org/v2/everything?apiKey=${apiKey}` +
           (from ? `&from=${from}` : "") +
           (to ? `&to=${to}` : "") +
-          (searchParam ? `&q=${searchParam}` : ""),
+          (searchParam ? `&q="${searchParam}"` : ""),
       }),
     }),
     getHeadlinesNewsApiOrg: builder.query<

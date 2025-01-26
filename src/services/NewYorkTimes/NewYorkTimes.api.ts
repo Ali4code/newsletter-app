@@ -10,15 +10,16 @@ export const TheNewYorkTimesApi = BaseApi.injectEndpoints({
       TNewYorTimesResponse,
       TNewYorTimesRequest
     >({
-      query: ({ apiKey, searchParam, from, to }) => ({
+      query: ({ apiKey, searchParam, from, to, category }) => ({
         url:
           `api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}` +
           (from ? `&begin_date=${from}` : "") +
           (to ? `&end_date=${to}` : "") +
-          (searchParam ? `&q=${searchParam}` : ""),
+          (searchParam ? `&q=${searchParam}` : "") +
+          (category ? `&fq=section_name:(${category})` : ""),
       }),
     }),
   }),
 });
 
-export const { useLazySearchNewYorkTimesQuery } = TheNewYorkTimesApi;
+export const { useLazySearchNewYorkTimesQuery, useSearchNewYorkTimesQuery } = TheNewYorkTimesApi;

@@ -1,4 +1,4 @@
-import { CATEGORIES } from "./NewsApi.constants";
+import { NEWS_API_CATEGORIES } from "./NewsApi.constants";
 
 export type TSearchNewsApiOrgRequest = {
   apiKey?: string;
@@ -28,7 +28,7 @@ export type TNewsApiOrgResponse = {
 };
 
 export type TTopHeadlinesNewsApiOrgRequest = {
-  category?: (typeof CATEGORIES)[keyof typeof CATEGORIES];
+  category?: (typeof NEWS_API_CATEGORIES)[keyof typeof NEWS_API_CATEGORIES];
   apiKey: string;
   sources?: string;
 };

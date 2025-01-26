@@ -3,6 +3,7 @@ export type TNewYorTimesRequest = {
   searchParam?: string;
   from?: string;
   to?: string;
+  category?: string;
 };
 
 export type TArticleNewYorkTimes = {
