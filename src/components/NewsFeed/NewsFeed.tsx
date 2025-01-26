@@ -7,7 +7,6 @@ import { useAuthAlert } from "../../utils/useAuthAlert";
 export const NewsFeed = () => {
   useAuthAlert();
   const apiKeys = useSelector(selectApiKeys);
-  // const [preferences, setPreferences] = useState<TPreferences>({});
 
   const { data, isLoading } = useGetHeadlinesNewsApiOrgQuery(
     {
