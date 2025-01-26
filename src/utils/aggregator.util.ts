@@ -1,4 +1,4 @@
-import { TArticle } from "../components/ArticleRow/ArticleRow";
+import { TArticle } from "../components/ArticleCard/ArticleCard";
 import { TPreferences } from "../components/Preferences/Preferences.types";
 import { API_SOURCES } from "../components/SearchColumn/SearchColumn.constants";
 import { TNewsApiOrgResponse } from "../services/NewsApi/NewsApi.types";
@@ -29,7 +29,7 @@ export const normalizeArticles = (articles: any[]): TArticle[] => {
         article.publishedAt, //ok
       url: article.url || article.webUrl || article.web_url, // ok
       source:
-        article.source || article.fields?.publication || article.source?.name, // ok
+        article.source?.name || article.source || article.fields?.publication, // ok
     };
   });
 };

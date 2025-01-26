@@ -1,5 +1,5 @@
-import { ArticleRow, TArticle } from "../ArticleRow/ArticleRow";
-import { ArticleRowSkeleton } from "../ArticleRow/ArticleRow.skeleton";
+import { ArticleCard, TArticle } from "../ArticleCard/ArticleCard";
+import { ArticleCardSkeleton } from "../ArticleCard/ArticleCard.skeleton";
 import Classes from "./ArticleList.module.css";
 
 export const ArticleList = ({
@@ -11,22 +11,27 @@ export const ArticleList = ({
 }) => {
   if (!isLoading && (!articles || articles?.length === 0)) {
     return (
-      <div className={Classes.news_feed_container}>Sorry nothing to show</div>
+      <div className={Classes.news_feed_container}>
+        Sorry nothing to show please check your filters or api keys for errors
+      </div>
     );
   }
+
+  if (isLoading) {
+    return (
+      <div className={Classes.news_feed_container}>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <ArticleCardSkeleton key={index} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className={Classes.news_feed_container}>
-      {isLoading && (
-        <>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <ArticleRowSkeleton key={index} />
-          ))}
-        </>
-      )}
-
       {articles?.map((article) => (
         //fix here
-        <ArticleRow key={article.id} article={article} />
+        <ArticleCard key={article.id} article={article} />
       ))}
     </div>
   );

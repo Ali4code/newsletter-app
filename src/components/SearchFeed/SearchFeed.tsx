@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { selectApiKeys } from "../../store/authSlice";
 import { useAuthAlert } from "../../utils/useAuthAlert";
 import { normalizeArticles } from "../../utils/aggregator.util";
-import { TArticle } from "../ArticleRow/ArticleRow";
+import { TArticle } from "../ArticleCard/ArticleCard";
 
 export const SearchFeed = () => {
   useAuthAlert();
