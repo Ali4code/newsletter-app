@@ -8,10 +8,12 @@ import { API_SOURCES } from "../SearchColumn/SearchColumn.constants";
 import { useSelector } from "react-redux";
 import { selectApiKeys } from "../../store/authSlice";
 import { useAuthAlert } from "../../utils/useAuthAlert";
+import { normalizeArticles } from "../../utils/aggregator.util";
+import { TArticle } from "../ArticleRow/ArticleRow";
 
 export const SearchFeed = () => {
   useAuthAlert();
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<TArticle[]>([]);
   const [searchFilters, setSearchFilters] = useState<{
     searchParam?: string;
     from?: string;
@@ -48,7 +50,7 @@ export const SearchFeed = () => {
         })
           .unwrap()
           .then((data) => {
-            setSearchResults(data.response.results);
+            setSearchResults(normalizeArticles(data.response.results));
           });
         break;
       case API_SOURCES.THE_NEWS_API_ORG.id:
@@ -60,7 +62,7 @@ export const SearchFeed = () => {
         })
           .unwrap()
           .then((data) => {
-            setSearchResults(data.articles);
+            setSearchResults(normalizeArticles(data.articles));
           });
         break;
       case API_SOURCES.NEW_YORK_TIMES.id:
@@ -72,7 +74,7 @@ export const SearchFeed = () => {
         })
           .unwrap()
           .then((data) => {
-            setSearchResults(data.response.docs);
+            setSearchResults(normalizeArticles(data.response.docs));
           });
         break;
     }

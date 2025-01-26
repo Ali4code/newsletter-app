@@ -5,7 +5,8 @@ import { TNewsApiOrgResponse } from "../services/NewsApi/NewsApi.types";
 import { TNewYorTimesResponse } from "../services/NewYorkTimes/NewYorkTimes.types";
 import { TGuardianResponse } from "../services/TheGuardian/TheGuardian.types";
 
-const normalizeArticles = (articles: any[]): TArticle[] => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const normalizeArticles = (articles: any[]): TArticle[] => {
   return articles?.map((article) => {
     return {
       id:
