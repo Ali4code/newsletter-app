@@ -24,7 +24,7 @@ export type TArticleNewsApi = {
 export type TNewsApiOrgResponse = {
   status: string;
   totalResults: number;
-  articles: TArticle[];
+  articles: TArticleNewsApi[];
 };
 
 export type TTopHeadlinesNewsApiOrgRequest = {

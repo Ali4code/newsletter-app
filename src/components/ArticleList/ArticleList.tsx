@@ -1,5 +1,4 @@
-import { TArticle } from "../../services/NewsApi/NewsApi.types";
-import { ArticleRow } from "../ArticleRow/ArticleRow";
+import { ArticleRow, TArticle } from "../ArticleRow/ArticleRow";
 import { ArticleRowSkeleton } from "../ArticleRow/ArticleRow.skeleton";
 import Classes from "./ArticleList.module.css";
 
@@ -27,7 +26,7 @@ export const ArticleList = ({
 
       {articles?.map((article) => (
         //fix here
-        <ArticleRow key={Math.random()} article={article} />
+        <ArticleRow key={article.id} article={article} />
       ))}
     </div>
   );

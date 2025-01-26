@@ -15,7 +15,7 @@ export const getAggregatedNews = ({
   newYorkTimesData?: TNewYorTimesResponse;
   guardianData?: TGuardianResponse;
   preferences: TPreferences;
-}): TArticle => {
+}): TArticle[] => {
   const isNewsOrgIncluded = preferences.sources?.includes(
     API_SOURCES.THE_NEWS_API_ORG.id
   );
@@ -34,5 +34,7 @@ export const getAggregatedNews = ({
     ...((isGuardianIncluded && (guardianData?.response?.results || [])) || []),
   ];
 
+  // TODO: sort aggregated by date + normalize response between 3 sources
+  //@ts-expect-error next-line
   return aggregated;
 };

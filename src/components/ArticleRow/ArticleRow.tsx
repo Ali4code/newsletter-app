@@ -1,6 +1,7 @@
 import Classes from "./ArticleRow.module.css";
 
 export type TArticle = {
+  id: string;
   title: string;
   description: string;
   content: string;
