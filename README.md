@@ -1,6 +1,6 @@
 # How to run:
 
-0. app is deployed here: [https:](https://ali4code.github.io/newsletter-app/)
+0. app is deployed here: [https://ali4code.github.io/newsletter-app/](https://ali4code.github.io/newsletter-app/)
 just be aware that newsapi.org will throw an CORS error if the location is not localhost (none commercial key)
 
 1. docker:
@@ -13,7 +13,7 @@ docker build . -t ali4code-newsletter
 ```bash 
 docker run -db 8080:8080 ali4code-newsletter
 ```
-then access app by navigating to [http:](http://localhost:8080/)
+then access app by navigating to [http://localhost:8080/](http://localhost:8080/)
 
 
 2. local node: 
@@ -26,7 +26,7 @@ which will use node version 18
 ```bash 
 npm run dev
 ```
-then access app by navigating to [http:](http://localhost:8080/)
+then access app by navigating to [http://localhost:8080/](http://localhost:8080/)
 
 # API keys
 
