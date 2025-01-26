@@ -56,6 +56,7 @@ export const useGetNewsFeed = ({
     guardianData,
     newsApiData,
     newYorkTimesData,
+    preferences,
   });
 
   return {
