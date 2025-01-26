@@ -26,7 +26,7 @@ export const NewsOrgApi = BaseApi.injectEndpoints({
     >({
       query: ({ apiKey, category }) => ({
         url:
-          `newsapi.org/v2/top-headlines?apiKey=${apiKey}` +
+          `newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}` +
           (category ? `&category=${category}` : ""),
         headers: { "X-Api-Key": apiKey },
       }),

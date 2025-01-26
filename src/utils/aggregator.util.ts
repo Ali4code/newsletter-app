@@ -35,6 +35,6 @@ export const getAggregatedNews = ({
   ];
 
   // TODO: sort aggregated by date + normalize response between 3 sources
-  //@ts-expect-error next-line
+  // @ts-expect-error next-line
   return aggregated;
 };

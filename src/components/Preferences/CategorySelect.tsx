@@ -23,11 +23,9 @@ export const CategorySelect = ({
       <select
         name="category"
         onChange={(event) => onCategoryChange(event, source)}
-        value={selectedCategory || "none"}
+        value={selectedCategory || "all"}
       >
-        <option value="none" disabled>
-          Select a Category
-        </option>
+        <option value="all">all</option>
         {Object.keys(categories).map((key) => (
           <option key={categories[key]} value={categories[key]}>
             {categories[key]}

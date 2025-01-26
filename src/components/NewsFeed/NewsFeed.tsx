@@ -40,6 +40,13 @@ export const NewsFeed = () => {
     source: TSource
   ) => {
     const value = event.target.value as TCategory;
+    if (value === "all") {
+      setPreferences((prev) => ({
+        ...prev,
+        category: { ...prev?.category, [source]: undefined },
+      }));
+      return;
+    }
     setPreferences((prev) => ({
       ...prev,
       category: { ...prev?.category, [source]: value },
