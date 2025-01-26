@@ -14,43 +14,52 @@ export const useGetNewsFeed = ({
 }) => {
   const apiKeys = useSelector(selectApiKeys);
 
-  const { data: newsApiData, isLoading: isNewsApiLoading } =
-    useGetHeadlinesNewsApiOrgQuery(
-      {
-        apiKey: apiKeys?.newsApiOrg,
-        category: preferences.category?.newsApiOrg,
-      },
-      {
-        skip:
-          !apiKeys?.newsApiOrg ||
-          !preferences.sources?.includes(API_SOURCES.THE_NEWS_API_ORG.id),
-      }
-    );
+  const {
+    data: newsApiData,
+    isLoading: isNewsApiLoading,
+    isFetching: isNewsApiFetching,
+  } = useGetHeadlinesNewsApiOrgQuery(
+    {
+      apiKey: apiKeys?.newsApiOrg,
+      category: preferences.category?.newsApiOrg,
+    },
+    {
+      skip:
+        !apiKeys?.newsApiOrg ||
+        !preferences.sources?.includes(API_SOURCES.THE_NEWS_API_ORG.id),
+    }
+  );
 
-  const { data: newYorkTimesData, isLoading: isNewYorkTimesLoading } =
-    useSearchNewYorkTimesQuery(
-      {
-        apiKey: apiKeys?.nyTimes,
-        category: preferences.category?.newYorkTimes,
-      },
-      {
-        skip:
-          !apiKeys?.nyTimes ||
-          !preferences.sources?.includes(API_SOURCES.NEW_YORK_TIMES.id),
-      }
-    );
-  const { data: guardianData, isLoading: isGuardianLoading } =
-    useSearchGuardianQuery(
-      {
-        apiKey: apiKeys?.guardianNews,
-        category: preferences.category?.theGuardian,
-      },
-      {
-        skip:
-          !apiKeys?.guardianNews ||
-          !preferences.sources?.includes(API_SOURCES.THE_GUARDIAN.id),
-      }
-    );
+  const {
+    data: newYorkTimesData,
+    isLoading: isNewYorkTimesLoading,
+    isFetching: isNewYorkTimesFetching,
+  } = useSearchNewYorkTimesQuery(
+    {
+      apiKey: apiKeys?.nyTimes,
+      category: preferences.category?.newYorkTimes,
+    },
+    {
+      skip:
+        !apiKeys?.nyTimes ||
+        !preferences.sources?.includes(API_SOURCES.NEW_YORK_TIMES.id),
+    }
+  );
+  const {
+    data: guardianData,
+    isLoading: isGuardianLoading,
+    isFetching: isGuardianFetching,
+  } = useSearchGuardianQuery(
+    {
+      apiKey: apiKeys?.guardianNews,
+      category: preferences.category?.theGuardian,
+    },
+    {
+      skip:
+        !apiKeys?.guardianNews ||
+        !preferences.sources?.includes(API_SOURCES.THE_GUARDIAN.id),
+    }
+  );
 
   const aggregatedNews = getAggregatedNews({
     guardianData,
@@ -61,6 +70,12 @@ export const useGetNewsFeed = ({
 
   return {
     data: aggregatedNews,
-    isLoading: isNewYorkTimesLoading || isNewsApiLoading || isGuardianLoading,
+    isLoading:
+      isNewYorkTimesLoading ||
+      isNewsApiLoading ||
+      isGuardianLoading ||
+      isGuardianFetching ||
+      isNewYorkTimesFetching ||
+      isNewsApiFetching,
   };
 };

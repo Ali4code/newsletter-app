@@ -1,5 +1,7 @@
 import Classes from "./SearchColumn.module.css";
 import { API_SOURCES } from "./SearchColumn.constants";
+import { Button } from "../UI/Button";
+import { FilterIcon } from "../Preferences/assets/FilterIcon";
 
 export const SearchColumn = ({
   onChange,
@@ -18,58 +20,74 @@ export const SearchColumn = ({
   onSearch: () => void;
 }) => {
   return (
-    <div className={Classes.search_column}>
-      <div className={Classes.title}>Search for articles</div>
-      <div className={Classes.input_container}>
-        <label htmlFor="source">Select your source</label>
-        <select
-          name="source"
-          onChange={onChange}
-          value={searchFilters?.source || "none"}
-        >
-          <option value="none" disabled>
-            Select your source
-          </option>
-          {Object.keys(API_SOURCES).map((key) => (
-            <option
-              key={API_SOURCES[key as keyof typeof API_SOURCES].id}
-              value={API_SOURCES[key as keyof typeof API_SOURCES].id}
+    <div className={Classes.search_column_container}>
+      <div className={Classes.search_column}>
+        <div className="flex">
+          <FilterIcon />
+          <div className={Classes.title}>Search for articles</div>
+        </div>
+        <div className={Classes.input_container}>
+          <div className={Classes.input_group}>
+            <label className={Classes.label} htmlFor="source">
+              Select your source
+            </label>
+            <select
+              name="source"
+              onChange={onChange}
+              value={searchFilters?.source || "none"}
             >
-              {API_SOURCES[key as keyof typeof API_SOURCES].name}
-            </option>
-          ))}
-        </select>
-        <div className={Classes.input_group}>
-          <label htmlFor="searchParam">search:</label>
-          <input
-            onChange={onChange}
-            name="searchParam"
-            id="searchParam"
-            value={searchFilters?.searchParam ?? ""}
-            type="text"
-          />
+              <option value="none" disabled>
+                Select your source
+              </option>
+              {Object.keys(API_SOURCES).map((key) => (
+                <option
+                  key={API_SOURCES[key as keyof typeof API_SOURCES].id}
+                  value={API_SOURCES[key as keyof typeof API_SOURCES].id}
+                >
+                  {API_SOURCES[key as keyof typeof API_SOURCES].name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={Classes.input_group}>
+            <label className={Classes.label} htmlFor="searchParam">
+              search param:
+            </label>
+            <input
+              onChange={onChange}
+              name="searchParam"
+              id="searchParam"
+              value={searchFilters?.searchParam ?? ""}
+              type="text"
+            />
+          </div>
+          <div className={Classes.input_group}>
+            <label className={Classes.label} htmlFor="from">
+              From
+            </label>
+            <input
+              type="date"
+              name="from"
+              id="from"
+              value={searchFilters.from ?? ""}
+              onChange={onChange}
+            />
+          </div>
+          <div className={Classes.input_group}>
+            <label className={Classes.label} htmlFor="to">
+              To
+            </label>
+            <input
+              type="date"
+              name="to"
+              id="to"
+              value={searchFilters.to ?? ""}
+              onChange={onChange}
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="from">From</label>
-          <input
-            type="date"
-            name="from"
-            id="from"
-            value={searchFilters.from ?? ""}
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="to">To</label>
-          <input
-            type="date"
-            name="to"
-            id="to"
-            value={searchFilters.to ?? ""}
-            onChange={onChange}
-          />
-        </div>
-        <button onClick={onSearch}>Search</button>
+
+        <Button onClick={onSearch} text="Search" />
       </div>
     </div>
   );

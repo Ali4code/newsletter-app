@@ -81,13 +81,13 @@ export const SearchFeed = () => {
   };
 
   return (
-    <div>
+    <>
       <SearchColumn
         onChange={onChange}
         onSearch={onSearch}
         searchFilters={searchFilters}
       />
       <ArticleList articles={searchResults} isLoading={isLoading} />
-    </div>
+    </>
   );
 };

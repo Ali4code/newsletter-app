@@ -76,6 +76,11 @@ export const AuthenticationFrom = () => {
         </div>
         <button onClick={onSubmit}>Submit</button>
       </form>
+      This Section added to avoid committing private keys to the repository and
+      also is not good practise to store keys in localstorage to avoid confusion
+      and to make it easy to run the project i'm gonna commit keys to repo if
+      you are seeing this application on a deployed url, newsapi.org will throw
+      an CORS error because i'm not using their commercial keys (paid)
     </div>
   );
 };

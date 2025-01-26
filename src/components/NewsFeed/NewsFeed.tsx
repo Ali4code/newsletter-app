@@ -10,6 +10,7 @@ import {
 import { WEBPAGE_STATE_LOCAL_STORAGE_KEY } from "../../constants";
 import { useEffect, useState } from "react";
 import { useGetNewsFeed } from "../../utils/useGetNewsFeed";
+import { API_SOURCES } from "../SearchColumn/SearchColumn.constants";
 
 export const NewsFeed = () => {
   useAuthAlert();
@@ -19,7 +20,13 @@ export const NewsFeed = () => {
     localStorage.getItem(WEBPAGE_STATE_LOCAL_STORAGE_KEY) ?? "{}"
   ) as TWebState;
   const [preferences, setPreferences] = useState<TPreferences>(
-    prevWebState?.preferences ?? {}
+    prevWebState?.preferences ?? {
+      sources: [
+        API_SOURCES.THE_GUARDIAN.id,
+        API_SOURCES.THE_NEWS_API_ORG.id,
+        API_SOURCES.NEW_YORK_TIMES.id,
+      ],
+    }
   );
 
   const onSourceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
