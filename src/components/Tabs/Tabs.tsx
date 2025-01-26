@@ -4,6 +4,7 @@ import { selectApiKeys } from "../../store/authSlice";
 import { TTab } from "../Navbar/Navbar.types";
 import { WEBPAGE_STATE_LOCAL_STORAGE_KEY } from "../../constants";
 import { selectSelectedTab, setActionSelectedTab } from "../../store/tabsSlice";
+import { TWebState } from "../Preferences/Preferences.types";
 
 export const Tabs = ({
   tabs,
@@ -17,13 +18,20 @@ export const Tabs = ({
   const dispatch = useDispatch();
   const selectedTab = useSelector(selectSelectedTab);
   const onTabSelect = (tab: TTab) => {
+    const prevWebState = JSON.parse(
+      localStorage.getItem(WEBPAGE_STATE_LOCAL_STORAGE_KEY) ?? "{}"
+    ) as TWebState;
+
     const webpageState = {
+      ...prevWebState,
       selectedTab: tab,
     };
+
     localStorage.setItem(
       WEBPAGE_STATE_LOCAL_STORAGE_KEY,
       JSON.stringify(webpageState)
     );
+
     dispatch(setActionSelectedTab({ selectedTab: tab }));
   };
   return (
