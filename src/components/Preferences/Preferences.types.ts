@@ -24,4 +24,5 @@ export type TPreferences = {
 export type TWebState = {
   selectedTab: string;
   preferences?: TPreferences;
+  isPreferencesExpanded: boolean;
 };

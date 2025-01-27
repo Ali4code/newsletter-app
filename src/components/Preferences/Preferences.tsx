@@ -1,9 +1,10 @@
-import { TPreferences, TSource } from "./Preferences.types";
+import { TPreferences, TSource, TWebState } from "./Preferences.types";
 import Classes from "./Preferences.module.css";
 import { API_SOURCES } from "../SearchColumn/SearchColumn.constants";
 import { CategorySelect } from "./CategorySelect";
 import { FilterIcon } from "./assets/FilterIcon";
 import { useState } from "react";
+import { WEBPAGE_STATE_LOCAL_STORAGE_KEY } from "../../constants";
 
 export const Preferences = ({
   preferences,
@@ -17,15 +18,30 @@ export const Preferences = ({
   ) => void;
   onSourceChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const webState = JSON.parse(
+    localStorage.getItem(WEBPAGE_STATE_LOCAL_STORAGE_KEY) ?? "{}"
+  ) as TWebState;
+
+  const [isExpanded, setIsExpanded] = useState(
+    webState.isPreferencesExpanded ?? true
+  );
+
+  const onExtendToggle = () => {
+    localStorage.setItem(
+      WEBPAGE_STATE_LOCAL_STORAGE_KEY,
+      JSON.stringify({
+        ...webState,
+        isPreferencesExpanded: !isExpanded,
+      })
+    );
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <div className={Classes.preferences_container}>
-      <div
-        className={Classes.filter_feed}
-        onClick={() => setIsExpanded((prev) => !prev)}
-      >
+      <div className={Classes.filter_feed} onClick={onExtendToggle}>
         <FilterIcon color={isExpanded ? "white" : "grey"} />
-        (filtering is here)
+        {!isExpanded && "filtering is here"}
       </div>
       {isExpanded && (
         <div className={Classes.preferences}>
